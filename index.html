@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#0b0b0c" />
+    <title>Spoorthi K P — AI & Software Developer</title>
+    <meta
+      name="description"
+      content="Portfolio of Spoorthi K P — AI, computer vision and full-stack software, featuring MediMind AI and other real, shipped projects."
+    />
+    <link rel="canonical" href="https://spoorthikp.dev" />
+  </head>
+  <body>
+    <script>
+      (function () {
+        try {
+          var stored = localStorage.getItem("spoorthi-portfolio-theme");
+          var dark = stored ? stored === "dark" : matchMedia("(prefers-color-scheme: dark)").matches;
+          document.documentElement.classList.toggle("dark", dark);
+        } catch (e) {}
+      })();
+    </script>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

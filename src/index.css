@@ -1,0 +1,80 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-display: "Space Grotesk", "Inter", sans-serif;
+  --font-body: "Inter", "Space Grotesk", sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+
+  --color-bg: #faf9f6;
+  --color-surface: #f1efea;
+  --color-ink: #141410;
+  --color-muted: #6b6b63;
+  --color-border: rgba(20, 20, 16, 0.1);
+
+  --color-accent: #ffb020;
+  --color-accent-dim: #b8791a;
+  --color-accent-ink: #8a5c0f;
+
+  --color-border-strong: rgba(20, 20, 16, 0.16);
+
+  --color-bg-dark: #0b0b0c;
+  --color-surface-dark: #17171a;
+  --color-ink-dark: #ececea;
+  --color-muted-dark: #93938c;
+  --color-border-dark: rgba(255, 255, 255, 0.08);
+  --color-border-strong-dark: rgba(255, 255, 255, 0.18);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  background-color: var(--color-bg);
+  color: var(--color-ink);
+  font-family: var(--font-body);
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.dark body {
+  background-color: var(--color-bg-dark);
+  color: var(--color-ink-dark);
+}
+
+.dark {
+  --color-border-strong: var(--color-border-strong-dark);
+  --color-accent-ink: var(--color-accent);
+}
+
+::selection {
+  background-color: var(--color-accent);
+  color: #0b0b0c;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-accent-ink);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* mono utility for status tags, stats, eyebrows — the "telemetry" register */
+.font-tag {
+  font-family: var(--font-mono);
+  letter-spacing: 0.06em;
+}
