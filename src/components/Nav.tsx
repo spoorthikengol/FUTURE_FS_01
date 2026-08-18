@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X, Moon, Sun, ArrowUpRight } from "lucide-react";
-import { site } from "@/data/site";
+
 import { cn } from "@/lib/utils";
 
 const links = [
@@ -23,13 +23,16 @@ export function Nav({ theme, toggleTheme }: NavProps) {
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
+
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
+
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
+
     return () => {
       document.body.style.overflow = "";
     };
@@ -45,6 +48,7 @@ export function Nav({ theme, toggleTheme }: NavProps) {
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-8">
+        {/* Logo */}
         <a
           href="#top"
           className="font-display text-sm font-semibold tracking-tight text-ink dark:text-ink-dark"
@@ -52,6 +56,7 @@ export function Nav({ theme, toggleTheme }: NavProps) {
           SPOORTHI K P
         </a>
 
+        {/* Desktop Navigation */}
         <ul className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
             <li key={link.href}>
@@ -65,7 +70,9 @@ export function Nav({ theme, toggleTheme }: NavProps) {
           ))}
         </ul>
 
+        {/* Desktop Actions */}
         <div className="hidden items-center gap-4 md:flex">
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle color theme"
@@ -73,15 +80,21 @@ export function Nav({ theme, toggleTheme }: NavProps) {
           >
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </button>
+
+          {/* Resume */}
           <a
-            href={`mailto:${site.email}`}
+            href="/resume.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-1 text-sm text-ink transition-opacity hover:opacity-70 dark:text-ink-dark"
           >
             Resume <ArrowUpRight size={14} />
           </a>
         </div>
 
+        {/* Mobile Actions */}
         <div className="flex items-center gap-2 md:hidden">
+          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle color theme"
@@ -89,6 +102,8 @@ export function Nav({ theme, toggleTheme }: NavProps) {
           >
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </button>
+
+          {/* Mobile Menu */}
           <button
             onClick={() => setOpen((o) => !o)}
             aria-label={open ? "Close menu" : "Open menu"}
@@ -100,13 +115,17 @@ export function Nav({ theme, toggleTheme }: NavProps) {
         </div>
       </nav>
 
+      {/* Mobile Navigation */}
       <AnimatePresence>
         {open && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: shouldReduceMotion ? 0 : 0.25, ease: "easeOut" }}
+            transition={{
+              duration: shouldReduceMotion ? 0 : 0.25,
+              ease: "easeOut",
+            }}
             className="overflow-hidden border-b border-border bg-bg dark:border-border-dark dark:bg-bg-dark md:hidden"
           >
             <ul className="flex flex-col gap-1 px-6 pb-6 pt-2">
@@ -121,9 +140,14 @@ export function Nav({ theme, toggleTheme }: NavProps) {
                   </a>
                 </li>
               ))}
+
+              {/* Mobile Resume */}
               <li>
                 <a
-                  href={`mailto:${site.email}`}
+                  href="/resume.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setOpen(false)}
                   className="mt-2 inline-flex items-center gap-1 py-3 text-sm text-muted dark:text-muted-dark"
                 >
                   Resume <ArrowUpRight size={14} />
