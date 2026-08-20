@@ -27,10 +27,22 @@ export const hackathon = {
 };
 
 export const toolGroups: { label: string; items: string[] }[] = [
-  { label: "Languages", items: ["C++", "C", "Python", "JavaScript / TypeScript"] },
-  { label: "Development", items: ["React", "FastAPI", "REST APIs", "PostgreSQL"] },
-  { label: "AI / ML", items: ["Machine Learning", "Computer Vision", "Medical AI"] },
-  { label: "Workflow", items: ["Git", "GitHub", "VS Code"] },
+  {
+    label: "Languages",
+    items: ["C++", "C", "Python", "JavaScript / TypeScript"],
+  },
+  {
+    label: "Development",
+    items: ["React", "FastAPI", "REST APIs", "PostgreSQL"],
+  },
+  {
+    label: "AI / ML",
+    items: ["Machine Learning", "Computer Vision", "Medical AI"],
+  },
+  {
+    label: "Workflow",
+    items: ["Git", "GitHub", "VS Code"],
+  },
 ];
 
 export const currentlyLearning = [
