@@ -125,7 +125,7 @@ export function Contact() {
               <button
                 type="submit"
                 disabled={status === "loading"}
-                className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg transition-transform hover:-translate-y-0.5 disabled:opacity-60 disabled:hover:translate-y-0 dark:bg-ink-dark dark:text-bg-dark"
+                className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md disabled:opacity-60 disabled:hover:translate-y-0 dark:bg-ink-dark dark:text-bg-dark"
               >
                 {status === "loading" ? (
                   <>

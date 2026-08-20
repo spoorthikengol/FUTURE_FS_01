@@ -7,12 +7,13 @@ import { Hero } from "@/components/Hero";
 import { SelectedWork } from "@/components/SelectedWork";
 import { HowIBuild } from "@/components/HowIBuild";
 import { ToolsAndFocus } from "@/components/ToolsAndFocus";
+import { CommandCenter } from "@/components/CommandCenter";
+import { BuildLog } from "@/components/BuildLog";
 import { Experience } from "@/components/Experience";
 import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
-import AskSpoorthiAI from "@/components/AskSpoorthiAI";
-import { CommandCenter } from "@/components/CommandCenter";
+import { AskSpoorthiAI } from "@/components/AskSpoorthiAI";
 
 const pageTitle = `${site.name} — AI & Software Developer`;
 
@@ -87,6 +88,10 @@ function App() {
 
         <ToolsAndFocus />
 
+        <CommandCenter />
+
+        <BuildLog />
+
         <Experience />
 
         <About />
@@ -96,11 +101,7 @@ function App() {
 
       <Footer />
 
-      {/* Ask Spoorthi AI */}
       <AskSpoorthiAI />
-
-      {/* Command Center */}
-      <CommandCenter />
     </>
   );
 }

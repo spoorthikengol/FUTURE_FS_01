@@ -10,7 +10,7 @@ interface Message {
   content: string;
 }
 
-export default function AskSpoorthiAI() {
+export function AskSpoorthiAI() {
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
   const [messages, setMessages] = useState<Message[]>([

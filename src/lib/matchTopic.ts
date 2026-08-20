@@ -5,13 +5,17 @@ import {
 } from "@/data/assistantKnowledge";
 
 function normalize(text: string): string {
-  return text.toLowerCase().trim();
+  return text
+    .toLowerCase()
+    .replace(/[?!.,'"]/g, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 export function matchTopic(question: string): AssistantTopic | null {
   const normalizedQuestion = normalize(question);
 
-  if (normalizedQuestion.length === 0) {
+  if (!normalizedQuestion) {
     return null;
   }
 
@@ -24,12 +28,22 @@ export function matchTopic(question: string): AssistantTopic | null {
     for (const keyword of topic.keywords) {
       const normalizedKeyword = normalize(keyword);
 
-      if (normalizedKeyword.length < 6) {
+      if (!normalizedKeyword) {
         continue;
       }
 
-      if (normalizedQuestion.indexOf(normalizedKeyword) !== -1) {
-        score += normalizedKeyword.split(" ").length;
+      if (normalizedQuestion.includes(normalizedKeyword)) {
+        const wordCount = normalizedKeyword.split(" ").length;
+
+        score += wordCount * 10;
+
+        if (normalizedQuestion === normalizedKeyword) {
+          score += 100;
+        }
+
+        if (normalizedKeyword.length >= 15) {
+          score += 5;
+        }
       }
     }
 
@@ -39,11 +53,7 @@ export function matchTopic(question: string): AssistantTopic | null {
     }
   }
 
-  if (bestScore === 0) {
-    return null;
-  }
-
-  return bestTopic;
+  return bestScore > 0 ? bestTopic : null;
 }
 
 export function answerQuestion(question: string): string {

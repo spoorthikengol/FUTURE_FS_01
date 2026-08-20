@@ -10,7 +10,11 @@ export function HowIBuild() {
 
         <div className="mt-14 grid grid-cols-1 gap-px overflow-hidden rounded-3xl border border-border bg-border dark:border-border-dark dark:bg-border-dark sm:grid-cols-2 lg:grid-cols-4">
           {buildPhilosophy.map((item, i) => (
-            <Reveal key={item.step} delay={i * 0.08} className="bg-bg p-8 dark:bg-bg-dark">
+            <Reveal
+  key={item.step}
+  delay={i * 0.08}
+  className="group bg-bg p-8 transition-colors hover:bg-surface dark:bg-bg-dark dark:hover:bg-surface-dark"
+>
               <span className="font-tag text-xs text-accent-ink">{item.step}</span>
               <h3 className="mt-4 font-display text-lg font-medium text-ink dark:text-ink-dark">
                 {item.title}

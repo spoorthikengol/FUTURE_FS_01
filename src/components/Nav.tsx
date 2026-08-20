@@ -1,11 +1,13 @@
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { Menu, X, Moon, Sun, ArrowUpRight } from "lucide-react";
-
+import { site } from "@/data/site";
 import { cn } from "@/lib/utils";
 
 const links = [
   { label: "Work", href: "#work" },
+  { label: "Command Center", href: "#command-center" },
+  { label: "Build Log", href: "#build-log" },
   { label: "About", href: "#about" },
   { label: "Experience", href: "#experience" },
   { label: "Contact", href: "#contact" },
@@ -27,7 +29,9 @@ export function Nav({ theme, toggleTheme }: NavProps) {
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
 
-    return () => window.removeEventListener("scroll", onScroll);
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+    };
   }, []);
 
   useEffect(() => {
@@ -48,7 +52,6 @@ export function Nav({ theme, toggleTheme }: NavProps) {
       )}
     >
       <nav className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4 sm:px-8">
-        {/* Logo */}
         <a
           href="#top"
           className="font-display text-sm font-semibold tracking-tight text-ink dark:text-ink-dark"
@@ -56,7 +59,6 @@ export function Nav({ theme, toggleTheme }: NavProps) {
           SPOORTHI K P
         </a>
 
-        {/* Desktop Navigation */}
         <ul className="hidden items-center gap-8 md:flex">
           {links.map((link) => (
             <li key={link.href}>
@@ -70,9 +72,7 @@ export function Nav({ theme, toggleTheme }: NavProps) {
           ))}
         </ul>
 
-        {/* Desktop Actions */}
         <div className="hidden items-center gap-4 md:flex">
-          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle color theme"
@@ -81,20 +81,15 @@ export function Nav({ theme, toggleTheme }: NavProps) {
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
-          {/* Resume */}
           <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
+            href={`mailto:${site.email}`}
             className="inline-flex items-center gap-1 text-sm text-ink transition-opacity hover:opacity-70 dark:text-ink-dark"
           >
             Resume <ArrowUpRight size={14} />
           </a>
         </div>
 
-        {/* Mobile Actions */}
         <div className="flex items-center gap-2 md:hidden">
-          {/* Theme Toggle */}
           <button
             onClick={toggleTheme}
             aria-label="Toggle color theme"
@@ -103,9 +98,8 @@ export function Nav({ theme, toggleTheme }: NavProps) {
             {theme === "dark" ? <Sun size={16} /> : <Moon size={16} />}
           </button>
 
-          {/* Mobile Menu */}
           <button
-            onClick={() => setOpen((o) => !o)}
+            onClick={() => setOpen((current) => !current)}
             aria-label={open ? "Close menu" : "Open menu"}
             aria-expanded={open}
             className="rounded-full p-2 text-ink dark:text-ink-dark"
@@ -115,7 +109,6 @@ export function Nav({ theme, toggleTheme }: NavProps) {
         </div>
       </nav>
 
-      {/* Mobile Navigation */}
       <AnimatePresence>
         {open && (
           <motion.div
@@ -141,13 +134,9 @@ export function Nav({ theme, toggleTheme }: NavProps) {
                 </li>
               ))}
 
-              {/* Mobile Resume */}
               <li>
                 <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  onClick={() => setOpen(false)}
+                  href={`mailto:${site.email}`}
                   className="mt-2 inline-flex items-center gap-1 py-3 text-sm text-muted dark:text-muted-dark"
                 >
                   Resume <ArrowUpRight size={14} />
