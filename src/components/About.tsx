@@ -1,4 +1,4 @@
-import { education, hackathon, interests } from "@/data/profile";
+import { education, hackathons, interests } from "@/data/profile";
 import { SectionHeading } from "./SectionHeading";
 import { Reveal } from "./Reveal";
 
@@ -12,6 +12,7 @@ export function About() {
         />
 
         <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[1.1fr_0.9fr]">
+          {/* About */}
           <Reveal>
             <p className="max-w-xl text-base leading-relaxed text-muted dark:text-muted-dark">
               I'm a student at {education.institution}, interested in AI,
@@ -60,26 +61,25 @@ export function About() {
                   Built Under Pressure
                 </p>
 
-                {/* ClassOfEquipments */}
-                <div className="mt-5">
-                  <p className="font-display text-lg font-medium text-ink dark:text-ink-dark">
-                    Team {hackathon.team}
-                  </p>
+                <div className="mt-5 space-y-6">
+                  {hackathons.map((hackathon, index) => (
+                    <div
+                      key={hackathon.team}
+                      className={
+                        index > 0
+                          ? "border-t border-border pt-6 dark:border-border-dark"
+                          : ""
+                      }
+                    >
+                      <p className="font-display text-lg font-medium text-ink dark:text-ink-dark">
+                        Team {hackathon.team}
+                      </p>
 
-                  <p className="mt-1 text-sm text-muted dark:text-muted-dark">
-                    Focus: {hackathon.focus}
-                  </p>
-                </div>
-
-                {/* Neural Experts */}
-                <div className="mt-6 border-t border-border pt-6 dark:border-border-dark">
-                  <p className="font-display text-lg font-medium text-ink dark:text-ink-dark">
-                    Team Neural Networks
-                  </p>
-
-                  <p className="mt-1 text-sm text-muted dark:text-muted-dark">
-                    Focus: SafetyNet AI / Computer Vision / Edge AI
-                  </p>
+                      <p className="mt-1 text-sm text-muted dark:text-muted-dark">
+                        Focus: {hackathon.focus}
+                      </p>
+                    </div>
+                  ))}
                 </div>
               </div>
             </Reveal>

@@ -1,29 +1,45 @@
 import { useState, type FormEvent } from "react";
-import { ArrowUpRight, CheckCircle2, Loader2, XCircle } from "lucide-react";
+import { motion, useReducedMotion } from "framer-motion";
+import {
+  ArrowUpRight,
+  CheckCircle2,
+  Loader2,
+  XCircle,
+} from "lucide-react";
 import { site } from "@/data/site";
 import { SectionHeading } from "./SectionHeading";
-import { Reveal } from "./Reveal";
 import { cn } from "@/lib/utils";
 
 type Status = "idle" | "loading" | "success" | "error";
 
-const initialForm = { name: "", email: "", subject: "", message: "" };
+const initialForm = {
+  name: "",
+  email: "",
+  subject: "",
+  message: "",
+};
 
 export function Contact() {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState<Status>("idle");
   const [errorMessage, setErrorMessage] = useState("");
-  // Simple honeypot field — bots tend to fill every input, real users never see this one.
   const [honeypot, setHoneypot] = useState("");
 
+  const shouldReduceMotion = useReducedMotion();
+
   const handleChange =
-    (field: keyof typeof form) => (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-      setForm((f) => ({ ...f, [field]: e.target.value }));
+    (field: keyof typeof form) =>
+    (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setForm((current) => ({
+        ...current,
+        [field]: e.target.value,
+      }));
     };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
-    if (honeypot) return; // silently drop likely bot submissions
+
+    if (honeypot) return;
 
     if (!form.name.trim() || !form.email.trim() || !form.message.trim()) {
       setStatus("error");
@@ -37,36 +53,104 @@ export function Contact() {
     try {
       const res = await fetch("/api/contact", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+          "Content-Type": "application/json",
+        },
         body: JSON.stringify(form),
       });
 
       if (!res.ok) {
         const data = await res.json().catch(() => ({}));
-        throw new Error(data.error || "Something went wrong. Please try again.");
+        throw new Error(
+          data.error || "Something went wrong. Please try again."
+        );
       }
 
       setStatus("success");
       setForm(initialForm);
     } catch (err) {
       setStatus("error");
-      setErrorMessage(err instanceof Error ? err.message : "Something went wrong.");
+      setErrorMessage(
+        err instanceof Error
+          ? err.message
+          : "Something went wrong. Please try again."
+      );
     }
   };
+
+  const revealInitial = shouldReduceMotion
+    ? {}
+    : {
+        opacity: 0,
+        y: 35,
+      };
+
+  const revealAnimate = shouldReduceMotion
+    ? {}
+    : {
+        opacity: 1,
+        y: 0,
+      };
 
   return (
     <section id="contact" className="py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-6 sm:px-8">
         <div className="grid grid-cols-1 gap-16 lg:grid-cols-[0.8fr_1fr]">
-          <SectionHeading
-            eyebrow="Contact"
-            title="Have an idea worth building?"
-            description="Let's start a conversation."
-          />
 
-          <Reveal>
-            <form onSubmit={handleSubmit} noValidate className="flex flex-col gap-5">
-              {/* Honeypot — hidden from real users, left blank by them */}
+          {/* Heading */}
+          <motion.div
+            initial={revealInitial}
+            whileInView={revealAnimate}
+            viewport={{
+              once: true,
+              amount: 0.3,
+            }}
+            transition={{
+              duration: 0.8,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+          >
+            <SectionHeading
+              eyebrow="Contact"
+              title="Have an idea worth building?"
+              description="Let's start a conversation."
+            />
+          </motion.div>
+
+          {/* Form */}
+          <motion.div
+            initial={
+              shouldReduceMotion
+                ? {}
+                : {
+                    opacity: 0,
+                    x: 45,
+                  }
+            }
+            whileInView={
+              shouldReduceMotion
+                ? {}
+                : {
+                    opacity: 1,
+                    x: 0,
+                  }
+            }
+            viewport={{
+              once: true,
+              amount: 0.2,
+            }}
+            transition={{
+              duration: 0.9,
+              delay: 0.12,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+          >
+            <form
+              onSubmit={handleSubmit}
+              noValidate
+              className="flex flex-col gap-5"
+            >
+              {/* Honeypot */}
               <input
                 type="text"
                 name="company"
@@ -79,7 +163,11 @@ export function Contact() {
               />
 
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-                <Field label="Name" htmlFor="name">
+                <AnimatedField
+                  label="Name"
+                  htmlFor="name"
+                  delay={0.2}
+                >
                   <input
                     id="name"
                     required
@@ -88,8 +176,13 @@ export function Contact() {
                     className={inputClass}
                     autoComplete="name"
                   />
-                </Field>
-                <Field label="Email" htmlFor="email">
+                </AnimatedField>
+
+                <AnimatedField
+                  label="Email"
+                  htmlFor="email"
+                  delay={0.25}
+                >
                   <input
                     id="email"
                     type="email"
@@ -99,19 +192,27 @@ export function Contact() {
                     className={inputClass}
                     autoComplete="email"
                   />
-                </Field>
+                </AnimatedField>
               </div>
 
-              <Field label="Subject" htmlFor="subject">
+              <AnimatedField
+                label="Subject"
+                htmlFor="subject"
+                delay={0.3}
+              >
                 <input
                   id="subject"
                   value={form.subject}
                   onChange={handleChange("subject")}
                   className={inputClass}
                 />
-              </Field>
+              </AnimatedField>
 
-              <Field label="Message" htmlFor="message">
+              <AnimatedField
+                label="Message"
+                htmlFor="message"
+                delay={0.35}
+              >
                 <textarea
                   id="message"
                   required
@@ -120,72 +221,188 @@ export function Contact() {
                   onChange={handleChange("message")}
                   className={cn(inputClass, "resize-none")}
                 />
-              </Field>
+              </AnimatedField>
 
-              <button
+              {/* Submit button */}
+              <motion.button
                 type="submit"
                 disabled={status === "loading"}
-                className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg shadow-sm transition-all duration-200 hover:-translate-y-0.5 hover:shadow-md disabled:opacity-60 disabled:hover:translate-y-0 dark:bg-ink-dark dark:text-bg-dark"
+                whileHover={
+                  shouldReduceMotion
+                    ? undefined
+                    : {
+                        y: -3,
+                        scale: 1.01,
+                      }
+                }
+                whileTap={
+                  shouldReduceMotion
+                    ? undefined
+                    : {
+                        scale: 0.98,
+                      }
+                }
+                transition={{
+                  duration: 0.2,
+                }}
+                className="group mt-2 inline-flex w-fit items-center gap-2 rounded-full bg-ink px-6 py-3 text-sm font-medium text-bg shadow-sm transition-shadow duration-300 hover:shadow-lg disabled:cursor-not-allowed disabled:opacity-60 dark:bg-ink-dark dark:text-bg-dark"
               >
                 {status === "loading" ? (
                   <>
-                    <Loader2 size={15} className="animate-spin" /> Sending...
+                    <Loader2
+                      size={15}
+                      className="animate-spin"
+                    />
+                    Sending...
                   </>
                 ) : (
                   <>
                     Start a Conversation
-                    <ArrowUpRight size={15} className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+
+                    <ArrowUpRight
+                      size={15}
+                      className="transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                    />
                   </>
                 )}
-              </button>
+              </motion.button>
 
+              {/* Success message */}
               {status === "success" && (
-                <p className="flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400">
-                  <CheckCircle2 size={16} /> Message sent — I'll get back to you soon.
-                </p>
-              )}
-              {status === "error" && (
-                <p className="flex items-center gap-2 text-sm text-red-500">
-                  <XCircle size={16} /> {errorMessage}
-                </p>
+                <motion.p
+                  initial={
+                    shouldReduceMotion
+                      ? {}
+                      : {
+                          opacity: 0,
+                          y: 10,
+                        }
+                  }
+                  animate={
+                    shouldReduceMotion
+                      ? {}
+                      : {
+                          opacity: 1,
+                          y: 0,
+                        }
+                  }
+                  className="flex items-center gap-2 text-sm text-emerald-600 dark:text-emerald-400"
+                >
+                  <CheckCircle2 size={16} />
+                  Message sent — I'll get back to you soon.
+                </motion.p>
               )}
 
-              <p className="text-xs text-muted dark:text-muted-dark">
+              {/* Error message */}
+              {status === "error" && (
+                <motion.p
+                  initial={
+                    shouldReduceMotion
+                      ? {}
+                      : {
+                          opacity: 0,
+                          x: -10,
+                        }
+                  }
+                  animate={
+                    shouldReduceMotion
+                      ? {}
+                      : {
+                          opacity: 1,
+                          x: 0,
+                        }
+                  }
+                  className="flex items-center gap-2 text-sm text-red-500"
+                >
+                  <XCircle size={16} />
+                  {errorMessage}
+                </motion.p>
+              )}
+
+              {/* Direct email */}
+              <motion.p
+                initial={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        opacity: 0,
+                      }
+                }
+                whileInView={
+                  shouldReduceMotion
+                    ? {}
+                    : {
+                        opacity: 1,
+                      }
+                }
+                viewport={{
+                  once: true,
+                }}
+                transition={{
+                  duration: 0.6,
+                  delay: 0.45,
+                }}
+                className="text-xs text-muted dark:text-muted-dark"
+              >
                 Prefer email? Reach me directly at{" "}
-                <a href={`mailto:${site.email}`} className="underline underline-offset-2">
+                <a
+                  href={`mailto:${site.email}`}
+                  className="underline underline-offset-2 transition-colors hover:text-accent-ink"
+                >
                   {site.email}
                 </a>
                 .
-              </p>
+              </motion.p>
             </form>
-          </Reveal>
+          </motion.div>
         </div>
       </div>
     </section>
   );
 }
 
-const inputClass =
-  "w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-ink outline-none transition-colors focus-visible:border-accent-ink dark:border-border-dark dark:bg-bg-dark dark:text-ink-dark";
-
-function Field({
+function AnimatedField({
   label,
   htmlFor,
   children,
+  delay,
 }: {
   label: string;
   htmlFor: string;
   children: React.ReactNode;
+  delay: number;
 }) {
   return (
-    <div>
+    <motion.div
+      initial={{
+        opacity: 0,
+        y: 18,
+      }}
+      whileInView={{
+        opacity: 1,
+        y: 0,
+      }}
+      viewport={{
+        once: true,
+        amount: 0.2,
+      }}
+      transition={{
+        duration: 0.55,
+        delay,
+        ease: [0.16, 1, 0.3, 1],
+      }}
+    >
       <label
         htmlFor={htmlFor}
         className="mb-1.5 block text-xs font-medium text-muted dark:text-muted-dark"
       >
         {label}
       </label>
+
       {children}
-    </div>
+    </motion.div>
   );
 }
+
+const inputClass =
+  "w-full rounded-xl border border-border bg-bg px-4 py-3 text-sm text-ink outline-none transition-all duration-300 placeholder:text-muted focus-visible:-translate-y-0.5 focus-visible:border-accent-ink focus-visible:shadow-[0_0_0_3px_rgba(255,176,32,0.08)] dark:border-border-dark dark:bg-bg-dark dark:text-ink-dark";

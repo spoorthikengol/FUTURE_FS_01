@@ -21,10 +21,16 @@ export const education = {
   cgpa: "9.38",
 };
 
-export const hackathon = {
-  team: "ClassOfEquipments",
-  focus: "Medical imaging / AI",
-};
+export const hackathons = [
+  {
+    team: "ClassOfEquipments",
+    focus: "Medical Imaging / AI",
+  },
+  {
+    team: "Neural Experts",
+    focus: "SafetyNet AI / Computer Vision / Edge AI",
+  },
+];
 
 export const toolGroups: { label: string; items: string[] }[] = [
   {
