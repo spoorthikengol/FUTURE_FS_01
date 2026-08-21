@@ -25,7 +25,9 @@ export function Hero() {
       id="top"
       className="relative overflow-hidden pb-16 pt-28 sm:pb-32 sm:pt-44"
     >
-      {/* Background atmosphere */}
+      {/* =========================
+          BACKGROUND ATMOSPHERE
+      ========================== */}
       {!shouldReduceMotion && (
         <>
           <motion.div
@@ -256,111 +258,96 @@ export function Hero() {
             delay: 0.25,
             ease: [0.16, 1, 0.3, 1],
           }}
-          className="relative mx-auto mt-2 flex w-full max-w-md flex-col items-center justify-center sm:mt-0"
+          className="relative mx-auto flex w-full max-w-md flex-col items-center justify-center"
         >
-          {/* Ambient glow */}
-          {!shouldReduceMotion && (
+          {/* =========================
+              PROFILE IMAGE STAGE
+          ========================== */}
+          <div className="relative flex h-[22rem] w-[22rem] items-center justify-center sm:h-[25rem] sm:w-[25rem]">
+            {/* Ambient glow */}
+            {!shouldReduceMotion && (
+              <motion.div
+                animate={{
+                  scale: [1, 1.12, 1],
+                  opacity: [0.18, 0.38, 0.18],
+                }}
+                transition={{
+                  duration: 4,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+                className="pointer-events-none absolute h-64 w-64 rounded-full bg-accent/20 blur-3xl sm:h-96 sm:w-96"
+              />
+            )}
+              {/* Single premium outer ring */}
+<motion.div
+  animate={
+    shouldReduceMotion
+      ? undefined
+      : {
+          rotate: 360,
+        }
+  }
+  transition={
+    shouldReduceMotion
+      ? undefined
+      : {
+          duration: 18,
+          repeat: Infinity,
+          ease: "linear",
+        }
+  }
+  className="absolute h-[20.5rem] w-[20.5rem] rounded-full border-2 border-accent/60 sm:h-[22rem] sm:w-[22rem]"
+/>       
+
+            {/* Profile image */}
             <motion.div
-              animate={{
-                scale: [1, 1.12, 1],
-                opacity: [0.18, 0.38, 0.18],
-              }}
-              transition={{
-                duration: 4,
-                repeat: Infinity,
-                ease: "easeInOut",
-              }}
-              className="pointer-events-none absolute h-64 w-64 rounded-full bg-accent/20 blur-3xl sm:h-96 sm:w-96"
-            />
-          )}
+              animate={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      y: [0, -6, 0],
+                    }
+              }
+              transition={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      duration: 5,
+                      repeat: Infinity,
+                      ease: "easeInOut",
+                    }
+              }
+              whileHover={
+                shouldReduceMotion
+                  ? undefined
+                  : {
+                      scale: 1.025,
+                    }
+              }
+              className="relative z-10 h-64 w-64 overflow-hidden rounded-full border-4 border-bg shadow-2xl dark:border-bg-dark sm:h-80 sm:w-80"
+            >
+              <img
+                src="/spoorthi.jpg"
+                alt="Spoorthi K P — AI and Software Developer"
+                loading="eager"
+                className="h-full w-full object-cover object-center"
+              />
 
-          {/* Outer rotating ring */}
-          <motion.div
-            animate={
-              shouldReduceMotion
-                ? undefined
-                : {
-                    rotate: 360,
-                  }
-            }
-            transition={
-              shouldReduceMotion
-                ? undefined
-                : {
-                    duration: 18,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }
-            }
-            className="absolute h-64 w-64 rounded-full border-2 border-accent/60 border-t-transparent border-r-transparent sm:h-96 sm:w-96"
-          />
+              <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
+            </motion.div>
+          </div>
 
-          {/* Inner ring */}
-          <motion.div
-            animate={
-              shouldReduceMotion
-                ? undefined
-                : {
-                    rotate: -360,
-                  }
-            }
-            transition={
-              shouldReduceMotion
-                ? undefined
-                : {
-                    duration: 12,
-                    repeat: Infinity,
-                    ease: "linear",
-                  }
-            }
-            className="absolute h-56 w-56 rounded-full border border-accent/30 sm:h-[22rem] sm:w-[22rem]"
-          />
-
-          {/* Profile image */}
-          <motion.div
-            animate={
-              shouldReduceMotion
-                ? undefined
-                : {
-                    y: [0, -8, 0],
-                  }
-            }
-            transition={
-              shouldReduceMotion
-                ? undefined
-                : {
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                  }
-            }
-            whileHover={
-              shouldReduceMotion
-                ? undefined
-                : {
-                    scale: 1.025,
-                  }
-            }
-            className="relative z-10 h-52 w-52 overflow-hidden rounded-full border-4 border-bg shadow-2xl dark:border-bg-dark sm:h-80 sm:w-80"
-          >
-            <img
-              src="/spoorthi.jpg"
-              alt="Spoorthi K P — AI and Software Developer"
-              loading="eager"
-              className="h-full w-full object-cover"
-            />
-
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent" />
-          </motion.div>
-
-          {/* Technology badge */}
+          {/* =========================
+              TEXT BELOW PHOTO
+          ========================== */}
           <motion.div
             initial={
               shouldReduceMotion
                 ? {}
                 : {
                     opacity: 0,
-                    y: 15,
+                    y: 12,
                   }
             }
             animate={
@@ -375,7 +362,7 @@ export function Hero() {
               duration: 0.6,
               delay: 1.1,
             }}
-            className="relative z-20 mt-5 rounded-full border border-border bg-bg/90 px-3 py-2 shadow-lg backdrop-blur-md dark:border-border-dark dark:bg-bg-dark/90 sm:mt-6 sm:px-4"
+            className="relative z-20 -mt-1 rounded-full border border-border bg-bg/90 px-4 py-2 shadow-lg backdrop-blur-md dark:border-border-dark dark:bg-bg-dark/90 sm:-mt-2 sm:px-5"
           >
             <div className="flex items-center gap-2 whitespace-nowrap">
               <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_10px_currentColor]" />
