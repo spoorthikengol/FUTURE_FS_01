@@ -16,19 +16,19 @@ export function About() {
           <Reveal>
             <p className="max-w-xl text-base leading-relaxed text-muted dark:text-muted-dark">
               I'm a student at {education.institution}, interested in AI,
-              software development, full-stack systems, computer vision and
-              using technology to solve real-world problems. Most of what's on
-              this page came out of wanting to actually build the things I was
-              reading about — a healthcare assistant, a computer-vision safety
-              system, a medical-imaging pipeline — rather than stopping at the
-              theory.
+              software development, intelligent systems, full-stack
+              development and using technology to solve real-world problems.
+              Most of what's on this page came out of wanting to actually build
+              the things I was reading about — a healthcare assistant, an
+              intelligent safety system and a medical-imaging pipeline —
+              rather than stopping at the theory.
             </p>
 
             <div className="mt-8 flex flex-wrap gap-2.5">
               {interests.map((interest) => (
                 <span
                   key={interest}
-                  className="rounded-full border border-border px-3 py-1.5 text-xs text-muted dark:border-border-dark dark:text-muted-dark"
+                  className="rounded-full border border-border px-3 py-1.5 text-xs text-muted transition-transform duration-300 hover:scale-[1.03] dark:border-border-dark dark:text-muted-dark"
                 >
                   {interest}
                 </span>
@@ -39,7 +39,7 @@ export function About() {
           <div className="flex flex-col gap-6">
             {/* Education */}
             <Reveal delay={0.06}>
-              <div className="rounded-3xl border border-border bg-surface p-8 dark:border-border-dark dark:bg-surface-dark">
+              <div className="rounded-3xl border border-border bg-surface p-8 transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.01] dark:border-border-dark dark:bg-surface-dark">
                 <p className="font-tag text-xs uppercase tracking-[0.14em] text-accent-ink">
                   Education
                 </p>
@@ -56,7 +56,7 @@ export function About() {
 
             {/* Built Under Pressure */}
             <Reveal delay={0.12}>
-              <div className="rounded-3xl border border-border bg-surface p-8 dark:border-border-dark dark:bg-surface-dark">
+              <div className="rounded-3xl border border-border bg-surface p-8 transition-transform duration-300 hover:-translate-y-1 hover:scale-[1.01] dark:border-border-dark dark:bg-surface-dark">
                 <p className="font-tag text-xs uppercase tracking-[0.14em] text-accent-ink">
                   Built Under Pressure
                 </p>

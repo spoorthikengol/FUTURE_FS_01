@@ -11,6 +11,7 @@
   --color-surface: #f1efea;
   --color-ink: #141410;
   --color-muted: #6b6b63;
+
   --color-border: rgba(20, 20, 16, 0.1);
 
   --color-accent: #ffb020;
@@ -23,34 +24,51 @@
   --color-surface-dark: #17171a;
   --color-ink-dark: #ececea;
   --color-muted-dark: #93938c;
+
   --color-border-dark: rgba(255, 255, 255, 0.08);
   --color-border-strong-dark: rgba(255, 255, 255, 0.18);
 }
 
+/* =========================================
+   GLOBAL DOCUMENT
+========================================= */
+
 html {
   scroll-behavior: smooth;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
 }
 
 body {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  margin: 0;
+  padding: 0;
+
   background-color: var(--color-bg);
   color: var(--color-ink);
+
   font-family: var(--font-body);
-  transition: background-color 0.3s ease, color 0.3s ease;
+
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+
+  overflow-x: hidden;
 }
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* =========================================
+   DARK MODE
+========================================= */
 
 .dark body {
   background-color: var(--color-bg-dark);
@@ -62,10 +80,18 @@ body {
   --color-accent-ink: var(--color-accent);
 }
 
+/* =========================================
+   TEXT SELECTION
+========================================= */
+
 ::selection {
   background-color: var(--color-accent);
   color: #0b0b0c;
 }
+
+/* =========================================
+   ACCESSIBILITY
+========================================= */
 
 :focus-visible {
   outline: 2px solid var(--color-accent-ink);
@@ -73,8 +99,65 @@ body {
   border-radius: 2px;
 }
 
-/* mono utility for status tags, stats, eyebrows — the "telemetry" register */
+/* =========================================
+   REDUCED MOTION
+========================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* =========================================
+   MONOSPACE / TELEMETRY TEXT
+========================================= */
+
 .font-tag {
   font-family: var(--font-mono);
   letter-spacing: 0.06em;
+}
+
+/* =========================================
+   MOBILE SAFETY
+========================================= */
+
+@media (max-width: 767px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  img,
+  video,
+  svg,
+  canvas {
+    max-width: 100%;
+  }
+}
+
+/* =========================================
+   TABLET SAFETY
+========================================= */
+
+@media (min-width: 768px) and (max-width: 1023px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
 }

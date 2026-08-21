@@ -6,7 +6,7 @@ export const site = {
   tagline: "I build intelligent products for real-world problems.",
 
   subtagline:
-    "Exploring AI, computer vision and full-stack systems to turn complex problems into useful experiences.",
+    "Exploring AI, intelligent systems and full-stack engineering to turn complex problems into useful experiences.",
 
   email: "spoorthikengol27@gmail.com",
 
@@ -20,6 +20,6 @@ export const site = {
 
   location: "JNN College of Engineering",
 
-  siteUrl:
-    "https://future-fs-01-mauve.vercel.app/",
+  siteUrl: "https://spoorthikp.vercel.app",
+  
 } as const;

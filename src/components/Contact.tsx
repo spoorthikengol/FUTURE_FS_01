@@ -319,40 +319,66 @@ export function Contact() {
                 </motion.p>
               )}
 
-              {/* Direct email */}
-              <motion.p
-                initial={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        opacity: 0,
-                      }
-                }
-                whileInView={
-                  shouldReduceMotion
-                    ? {}
-                    : {
-                        opacity: 1,
-                      }
-                }
-                viewport={{
-                  once: true,
-                }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.45,
-                }}
-                className="text-xs text-muted dark:text-muted-dark"
-              >
-                Prefer email? Reach me directly at{" "}
-                <a
-                  href={`mailto:${site.email}`}
-                  className="underline underline-offset-2 transition-colors hover:text-accent-ink"
-                >
-                  {site.email}
-                </a>
-                .
-              </motion.p>
+              {/* Direct contact */}
+<motion.div
+  initial={
+    shouldReduceMotion
+      ? {}
+      : {
+          opacity: 0,
+          y: 12,
+        }
+  }
+  whileInView={
+    shouldReduceMotion
+      ? {}
+      : {
+          opacity: 1,
+          y: 0,
+        }
+  }
+  viewport={{
+    once: true,
+  }}
+  transition={{
+    duration: 0.6,
+    delay: 0.45,
+  }}
+  className="space-y-4"
+>
+  <p className="text-xs text-muted dark:text-muted-dark">
+    Prefer email? Reach me directly at{" "}
+    <a
+      href={`mailto:${site.email}`}
+      className="font-medium text-ink underline underline-offset-2 transition-colors hover:text-accent-ink dark:text-ink-dark"
+    >
+      {site.email}
+    </a>
+    .
+  </p>
+
+  <div className="flex flex-wrap gap-3">
+    <a
+      href={site.linkedin}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-medium text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent-ink dark:border-border-dark dark:text-ink-dark"
+    >
+      LinkedIn
+      <ArrowUpRight size={13} />
+    </a>
+
+    <a
+      href={site.github}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="inline-flex items-center gap-2 rounded-full border border-border px-4 py-2 text-xs font-medium text-ink transition-all duration-300 hover:-translate-y-0.5 hover:border-accent hover:text-accent-ink dark:border-border-dark dark:text-ink-dark"
+    >
+      GitHub
+      <ArrowUpRight size={13} />
+    </a>
+  </div>
+</motion.div>
             </form>
           </motion.div>
         </div>

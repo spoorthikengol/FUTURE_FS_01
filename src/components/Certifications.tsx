@@ -9,7 +9,6 @@ export function Certifications() {
   return (
     <section id="certifications" className="py-24 sm:py-32">
       <div className="mx-auto max-w-6xl px-6 sm:px-8">
-
         {/* Animated heading */}
         <motion.div
           initial={
@@ -18,6 +17,7 @@ export function Certifications() {
               : {
                   opacity: 0,
                   y: 35,
+                  scale: 0.98,
                 }
           }
           whileInView={
@@ -26,6 +26,7 @@ export function Certifications() {
               : {
                   opacity: 1,
                   y: 0,
+                  scale: 1,
                 }
           }
           viewport={{
@@ -54,6 +55,7 @@ export function Certifications() {
                   : {
                       opacity: 0,
                       y: 50,
+                      scale: 0.97,
                     }
               }
               whileInView={
@@ -62,6 +64,7 @@ export function Certifications() {
                   : {
                       opacity: 1,
                       y: 0,
+                      scale: 1,
                     }
               }
               viewport={{
@@ -78,6 +81,7 @@ export function Certifications() {
                   ? undefined
                   : {
                       y: -6,
+                      scale: 1.01,
                     }
               }
               className="group relative overflow-hidden rounded-3xl border border-border bg-surface p-7 transition-colors duration-300 hover:border-accent/40 dark:border-border-dark dark:bg-surface-dark sm:p-8"

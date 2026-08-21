@@ -16,7 +16,7 @@ export function Experience() {
             <Reveal
               key={entry.org}
               delay={i * 0.08}
-              className="flex flex-col gap-4 bg-bg p-8 dark:bg-bg-dark sm:flex-row sm:items-baseline sm:justify-between"
+              className="flex flex-col gap-4 bg-bg p-8 transition-transform duration-300 hover:scale-[1.01] dark:bg-bg-dark sm:flex-row sm:items-baseline sm:justify-between"
             >
               <div>
                 <h3 className="font-display text-lg font-medium text-ink dark:text-ink-dark">
