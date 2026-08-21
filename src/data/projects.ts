@@ -10,7 +10,6 @@ export interface Project {
   kind: ProjectKind;
   name: string;
   category: string;
-  /** Small context label shown on the card, e.g. hackathon framing */
   contextLabel?: string;
   headline: string;
   summary: string;
@@ -18,6 +17,7 @@ export interface Project {
   pipeline?: string[];
   caseStudy: CaseStudySection[];
   links?: { label: string; href: string }[];
+  liveDemoNote?: string;
 }
 
 export const projects: Project[] = [
@@ -74,6 +74,7 @@ export const projects: Project[] = [
         href: "https://medimind-ai-frontend-web.onrender.com",
       },
     ],
+    liveDemoNote: "Hosted on Render · First load may take a moment",
   },
 
   {
