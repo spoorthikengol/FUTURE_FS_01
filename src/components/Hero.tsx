@@ -256,7 +256,7 @@ export function Hero() {
             delay: 0.25,
             ease: [0.16, 1, 0.3, 1],
           }}
-          className="relative mx-auto mt-2 flex w-full max-w-md items-center justify-center sm:mt-0"
+          className="relative mx-auto mt-2 flex w-full max-w-md flex-col items-center justify-center sm:mt-0"
         >
           {/* Ambient glow */}
           {!shouldReduceMotion && (
@@ -375,7 +375,7 @@ export function Hero() {
               duration: 0.6,
               delay: 1.1,
             }}
-            className="absolute bottom-2 left-1/2 z-20 -translate-x-1/2 rounded-full border border-border bg-bg/90 px-3 py-2 shadow-lg backdrop-blur-md dark:border-border-dark dark:bg-bg-dark/90 sm:bottom-5 sm:px-4"
+            className="relative z-20 mt-5 rounded-full border border-border bg-bg/90 px-3 py-2 shadow-lg backdrop-blur-md dark:border-border-dark dark:bg-bg-dark/90 sm:mt-6 sm:px-4"
           >
             <div className="flex items-center gap-2 whitespace-nowrap">
               <span className="h-2 w-2 rounded-full bg-accent shadow-[0_0_10px_currentColor]" />
