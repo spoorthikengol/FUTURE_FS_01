@@ -49,7 +49,7 @@ export function About() {
                 </p>
 
                 <p className="mt-1 text-sm text-muted dark:text-muted-dark">
-                  {education.status} · CGPA {education.cgpa}
+                 {education.status}
                 </p>
               </div>
             </Reveal>

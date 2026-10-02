@@ -40,17 +40,17 @@ export function ToolsAndFocus() {
               </p>
 
               <p className="mt-3 font-display text-xl font-medium text-ink dark:text-ink-dark">
-                Full Stack Web Development Internship
+                From Algorithms to Intelligent Systems
               </p>
 
               <p className="mt-1 text-sm text-muted dark:text-muted-dark">
-                Future Interns · August 2026 — September 2026
+                C++ · Data Structures & Algorithms · AI/ML
               </p>
 
               <p className="mt-4 text-sm leading-relaxed text-muted dark:text-muted-dark">
-                Building practical full-stack projects, strengthening
-                frontend and backend skills and gaining real-world
-                development experience.
+                Building stronger DSA foundations in C++ while exploring how AI
+                and software engineering come together to solve real-world
+                problems.
               </p>
 
               {/* Currently Learning */}

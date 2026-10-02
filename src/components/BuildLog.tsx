@@ -3,13 +3,13 @@ import { SectionHeading } from "./SectionHeading";
 
 const buildLog = [
   {
-    year: "AUG 2026",
-    label: "CURRENT",
+    year: "AUG–SEP 2026",
+    label: "COMPLETED",
     title: "Full Stack Web Development Internship",
     organization: "Future Interns",
     description:
-      "Working on practical full-stack development tasks, project building and real-world development experience.",
-    current: true,
+      "Completed Tasks 1–3: Professional Portfolio, VeloraCRM and SALORA as part of the Full Stack Web Development internship.",
+    current: false,
   },
   {
     year: "2026",
@@ -164,7 +164,7 @@ export function BuildLog() {
                       stiffness: 350,
                       damping: 14,
                     }}
-                    className={`absolute left-0 top-7 hidden h-[15px] w-[15px] rounded-full border-2 bg-bg dark:bg-bg-dark sm:block ${
+                    className={`absolute left-0 top-7 hidden h-[15px] w-[15px] rounded-full border-2 bg-bg dark:bg-bg-dark ${
                       item.current
                         ? "border-accent"
                         : "border-border dark:border-border-dark"

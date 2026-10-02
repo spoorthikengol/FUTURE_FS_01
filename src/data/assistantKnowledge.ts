@@ -26,8 +26,6 @@ const mri = projects.find(
   (project) => project.slug === "mri-enhancement-segmentation"
 );
 
-const currentExperience = experience[0];
-
 export const assistantTopics: AssistantTopic[] = [
   {
     id: "identity",
@@ -71,9 +69,8 @@ export const assistantTopics: AssistantTopic[] = [
       "where is spoorthi studying",
       "which college does spoorthi study at",
       "which college does spoorthi attend",
-      "cgpa",
     ],
-    answer: `Spoorthi is a ${education.status.toLowerCase()} at ${education.institution}, with a CGPA of ${education.cgpa}.`,
+    answer: `Spoorthi is a ${education.status.toLowerCase()} at ${education.institution}.`,
   },
 
   {
@@ -256,24 +253,40 @@ export const assistantTopics: AssistantTopic[] = [
   },
 
   {
+    id: "current-focus",
+    keywords: [
+      "current focus",
+      "what is the current focus",
+      "what is spoorthi current focus",
+      "what is spoorthi's current focus",
+      "what is her current focus",
+      "what is spoorthi focused on",
+      "what is spoorthi focusing on",
+      "what is she focused on",
+      "what is spoorthi currently focused on",
+      "what is spoorthi focusing on right now",
+      "what is her focus right now",
+      "what is spoorthi doing right now",
+    ],
+    answer:
+      "Spoorthi's current focus is strengthening her C++ and Data Structures & Algorithms foundations while building practical AI, computer vision and full-stack systems.",
+  },
+
+  {
     id: "current-work",
     keywords: [
       "currently working",
       "currently working on",
       "currently work",
       "current work",
-      "current job",
       "current role",
       "what is spoorthi currently working on",
-      "what is spoorthi doing currently",
       "what is spoorthi's current work",
-      "what is spoorthi doing now",
+      "what is spoorthi working on",
       "what is spoorthi working on now",
-      "what is spoorthi doing right now",
     ],
-    answer: currentExperience
-      ? `${currentExperience.role} at ${currentExperience.org} (${currentExperience.period}). ${currentExperience.description}`
-      : "Spoorthi's current work is listed in the Experience section of this portfolio.",
+    answer:
+      "Spoorthi is currently focused on strengthening her C++ and DSA foundations while continuing to build practical AI, computer vision and full-stack systems.",
   },
 
   {
@@ -362,8 +375,8 @@ export const suggestedQuestions = [
   "What projects has Spoorthi built?",
   "What hackathon projects has Spoorthi worked on?",
   "What kind of developer is Spoorthi?",
-  "What is Spoorthi currently working on?",
-  "Where is Spoorthi interning?",
+  "What is Spoorthi currently focused on?",
+  "What did Spoorthi do at Future Interns?",
   "What technologies does she use?",
   "How can I contact her?",
 ];

@@ -11,14 +11,13 @@ export const experience: ExperienceEntry[] = [
     role: "Full Stack Web Development Intern",
     period: "August 2026 — September 2026",
     description:
-      "Selected for a Full Stack Web Development internship focused on practical development tasks, project building, and real-world development experience.",
+      "Completed the Full Stack Web Development internship. Tasks completed: Task 1 — Professional Portfolio, Task 2 — VeloraCRM, Task 3 — SALORA.",
   },
 ];
 
 export const education = {
   institution: "JNN College of Engineering (JNNCE)",
   status: "Student",
-  cgpa: "9.38",
 };
 
 export const hackathons = [

@@ -117,7 +117,7 @@ export function CommandCenter() {
                   </span>
 
                   <p className="font-tag text-xs uppercase tracking-[0.14em] text-accent-ink">
-                    Currently Working On
+                    In the Building Phase
                   </p>
                 </div>
 
@@ -132,26 +132,9 @@ export function CommandCenter() {
                   className="mt-4 flex flex-wrap items-baseline gap-x-3 gap-y-1"
                 >
                   <h3 className="font-display text-2xl font-medium text-ink dark:text-ink-dark sm:text-3xl">
-                    Full Stack Web Development Internship
+                    Turning Fundamentals Into Real Systems
                   </h3>
-
-                  <span className="text-sm text-muted dark:text-muted-dark">
-                    Future Interns
-                  </span>
                 </motion.div>
-
-                <motion.p
-                  initial={{ opacity: 0, x: -20 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true }}
-                  transition={{
-                    duration: 0.6,
-                    delay: 0.45,
-                  }}
-                  className="mt-1 text-sm text-muted dark:text-muted-dark"
-                >
-                  August 2026 — September 2026
-                </motion.p>
 
                 <motion.p
                   initial={{ opacity: 0, y: 15 }}
@@ -159,13 +142,13 @@ export function CommandCenter() {
                   viewport={{ once: true }}
                   transition={{
                     duration: 0.6,
-                    delay: 0.55,
+                    delay: 0.45,
                   }}
                   className="mt-4 max-w-2xl text-sm leading-relaxed text-muted dark:text-muted-dark"
                 >
-                  Selected for a Full Stack Web Development internship focused
-                  on practical development tasks, project building and
-                  real-world development experience.
+                  Deepening my C++ and DSA foundations while turning what I
+                  learn into practical AI, computer vision and full-stack
+                  systems.
                 </motion.p>
 
                 <motion.div
