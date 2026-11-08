@@ -40,4 +40,11 @@ export const certifications: Certification[] = [
     date: "2026",
     image: "/certificates/future-interns-fullstack.png",
   },
+
+  {
+    title: "Programming in Modern C++",
+    issuer: "NPTEL",
+    date: "2026",
+    image: "/certificates/nptel-programming-modern-cpp.png",
+  },
 ];
