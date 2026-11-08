@@ -1,3 +1,4 @@
+
 export type ProjectKind = "flagship" | "hackathon" | "technical";
 
 export interface CaseStudySection {

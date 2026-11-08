@@ -29,6 +29,10 @@ export const hackathons = [
     team: "Neural Experts",
     focus: "SafetyNet AI / Computer Vision / Edge AI",
   },
+  {
+    team: "DevStorm",
+    focus: "Automatic Trade Bot / Algorithmic Trading",
+  },
 ];
 
 export const toolGroups: { label: string; items: string[] }[] = [
