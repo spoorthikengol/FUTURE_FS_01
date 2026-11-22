@@ -3,6 +3,7 @@ export interface Certification {
   issuer: string;
   date: string;
   image: string;
+  verificationUrl?: string;
 }
 
 export const certifications: Certification[] = [
@@ -46,5 +47,14 @@ export const certifications: Certification[] = [
     issuer: "NPTEL",
     date: "2026",
     image: "/certificates/nptel-programming-modern-cpp.png",
+  },
+
+  {
+    title: "SQL (Intermediate)",
+    issuer: "HackerRank",
+    date: "21 Nov 2026",
+    image: "/certificates/sql-intermediate.pdf",
+    verificationUrl:
+      "https://www.hackerrank.com/certificates/b48999180144",
   },
 ];
