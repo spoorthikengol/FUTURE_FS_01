@@ -54,7 +54,13 @@ export const certifications: Certification[] = [
     issuer: "HackerRank",
     date: "21 Nov 2026",
     image: "/certificates/sql-intermediate.pdf",
-    verificationUrl:
-      "https://www.hackerrank.com/certificates/b48999180144",
+    
+  },
+
+    {
+    title: "Smart India Hackathon 2026 – Participation",
+    issuer: "J N N College of Engineering (JNNCE)",
+    date: "17 Sep 2026",
+    image: "/certificates/smart-india-hackathon-2026.webp",
   },
 ];
